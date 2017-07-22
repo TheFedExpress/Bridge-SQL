@@ -37,27 +37,37 @@ order by seats desc
 ;
 # Q5
 	select 
-		carrier,
+		name,
         count(*) as flights
-	from flights
+	from airlines al
+	left join flights fl
+		on al.carrier = fl.carrier
+	where al.carrier is not null
     group by 1
     order by 2 desc
 ;
 # Q6
 	select 
-		carrier,
+		name,
         count(*) as flights
-	from flights
+	from airlines al
+	left join flights fl
+		on al.carrier = fl.carrier
+	where al.carrier is not null
     group by 1
     order by 2 desc
     limit 5
 ;
 # Q7
 	select 
-		carrier,
+		name,
         count(*) as flights
-	from flights
-    where distance >= 1000
+	from airlines al
+	left join flights fl
+		on al.carrier = fl.carrier
+	where 
+		al.carrier is not null
+        and distance >= 1000
     group by 1
     order by 2 desc
     limit 5
